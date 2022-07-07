@@ -29,23 +29,21 @@ const Price = styled.p`
     }
 `
 
-const Result = ({ PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE }: ResultI) => {
-    return (
-        <Container>
-            <Image
-                src={`https://cryptocompare.com/${IMAGEURL}`}
-                alt="crypto image"
-                title='crypto image'
-            />
-            <div>
-                <Price>The price is: <span>{PRICE}</span></Price>
-                <Text>Highest price today: <span>{HIGHDAY}</span></Text>
-                <Text>Lowest price today: <span>{LOWDAY}</span></Text>
-                <Text>Quote variation: <span>{CHANGEPCT24HOUR}</span></Text>
-                <Text>Last update: <span>{LASTUPDATE}</span></Text>
-            </div>
-        </Container>
-    )
-}
+const Result = ({ PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE }: ResultI) => (
+    <Container>
+        <Image
+            src={`https://cryptocompare.com/${IMAGEURL}`}
+            alt="crypto image"
+            title='crypto image'
+        />
+        <div>
+            <Price>The price is: <span>{PRICE}</span></Price>
+            <Text>Highest price today: <span>{HIGHDAY}</span></Text>
+            <Text>Lowest price today: <span>{LOWDAY}</span></Text>
+            <Text>Quote variation: <span>{CHANGEPCT24HOUR}</span></Text>
+            <Text>Last update: <span>{LASTUPDATE}</span></Text>
+        </div>
+    </Container>
+)
 
 export default Result

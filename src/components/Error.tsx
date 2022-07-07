@@ -12,8 +12,6 @@ const Text = styled.div`
     text-align: center;
 `
 
-const Error = ({ error }) => (
-    <Text>{error}</Text>
-)
+const Error = ({ error }) => <Text>{error}</Text>
 
 export default Error
