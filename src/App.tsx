@@ -84,9 +84,17 @@ function App() {
         />
 
         {loading && <Spinner />}
-        {result.PRICE && <Result result={result} />}
+        {result.PRICE &&
+          <Result
+            PRICE={result.PRICE}
+            HIGHDAY={result.HIGHDAY}
+            LOWDAY={result.LOWDAY}
+            CHANGEPCT24HOUR={result.CHANGEPCT24HOUR}
+            IMAGEURL={result.IMAGEURL}
+            LASTUPDATE={result.LASTUPDATE}
+          />
+        }
       </div>
-
     </Container>
   )
 }

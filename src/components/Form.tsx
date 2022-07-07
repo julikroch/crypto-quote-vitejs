@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import Error from './Error'
 import useSelectCoins from '../hooks/useSelectCoins'
 import { coins } from '../data/coins'
+import { OptionsI } from '../typings'
 
 const InputSubmit = styled.input`
     background-color: #9497FF;
@@ -22,7 +23,7 @@ const InputSubmit = styled.input`
     }
 `
 
-const Form = ({ setCoins }: any) => {
+const Form = ({ setCoins }: React.SetStateAction<any>) => {
     const [cryptos, setCryptos] = useState([])
     const [error, setError] = useState(false)
 
@@ -36,9 +37,9 @@ const Form = ({ setCoins }: any) => {
             const response = await result.json()
 
             const arrayCryptos = response?.Data?.map((item: any) => {
-                const obj = {
+                const obj: OptionsI = {
                     id: item.CoinInfo.Name,
-                    nombre: item.CoinInfo.FullName
+                    name: item.CoinInfo.FullName
                 }
                 return obj
             })
@@ -61,7 +62,7 @@ const Form = ({ setCoins }: any) => {
 
     return (
         <>
-            {error && <Error>All fields are mandatory</Error>}
+            {error && <Error error={'All fields are mandatory'} />}
 
             <form
                 onSubmit={handleSubmit}

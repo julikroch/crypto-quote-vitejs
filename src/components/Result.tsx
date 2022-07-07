@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { ResultI } from '../typings'
 
 const Container = styled.div`
     color: #FFF;
@@ -28,13 +29,13 @@ const Price = styled.p`
     }
 `
 
-const Result = ({ result }: any) => {
-    const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE } = result
+const Result = ({ PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE }: ResultI) => {
     return (
         <Container>
             <Image
                 src={`https://cryptocompare.com/${IMAGEURL}`}
                 alt="crypto image"
+                title='crypto image'
             />
             <div>
                 <Price>The price is: <span>{PRICE}</span></Price>

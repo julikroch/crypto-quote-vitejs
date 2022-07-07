@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from '@emotion/styled'
 
 const Text = styled.div`
@@ -11,6 +12,8 @@ const Text = styled.div`
     text-align: center;
 `
 
-const Error = ({ children }: any) => <Text>{children}</Text>
+const Error = ({ error }) => (
+    <Text>{error}</Text>
+)
 
 export default Error
