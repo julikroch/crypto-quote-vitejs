@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-import Formulario from './components/Formulario'
-import Resultado from './components/Resultado'
+import Form from './components/Form'
+import Result from './components/Result'
 import Spinner from './components/Spinner'
-import ImagenCripto from './img/imagen-criptos.png'
+import CryptoImage from './img/imagen-criptos.png'
 
-const Contenedor = styled.div`
+const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
   width: 90%;
@@ -15,7 +15,7 @@ const Contenedor = styled.div`
     column-gap: 2rem;
   }
 `
-const Imagen = styled.img`
+const Image = styled.img`
   max-width: 400px;
   width: 80%;
   margin: 100px auto 0 auto;
@@ -43,50 +43,51 @@ const Heading = styled.h1`
 
 function App() {
 
-  const [monedas, setMonedas] = useState({})
-  const [resultado, setResultado] = useState({})
-  const [cargando, setCargando] = useState(false)
+  const [coins, setCoins] = useState<any>({})
+  const [result, setResult] = useState<any>({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (Object.keys(monedas).length > 0) {
+    if (Object.keys(coins).length) {
 
-      const cotizarCripto = async () => {
-        setCargando(true)
-        setResultado({})
+      const quoteCrypto = async () => {
+        setLoading(true)
+        setResult({})
 
-        const { moneda, criptomoneda } = monedas
-        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
+        const { coin, crypto } = coins
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${coin}`
 
-        const respuesta = await fetch(url)
-        const resultado = await respuesta.json()
+        const response = await fetch(url)
+        const result = await response.json()
 
-        setResultado(resultado.DISPLAY[criptomoneda][moneda])
+        setResult(result.DISPLAY[crypto][coin])
 
-        setCargando(false)
+        setLoading(false)
       }
 
-      cotizarCripto()
+      quoteCrypto()
     }
-  }, [monedas])
+  }, [coins])
 
   return (
-    <Contenedor>
-      <Imagen
-        src={ImagenCripto}
-        alt="imagenes criptomonedas"
+    <Container>
+      <Image
+        src={CryptoImage}
+        alt="crypto image"
+        title='crypto image'
       />
 
       <div>
-        <Heading>Cotiza Criptomonedas al Instante</Heading>
-        <Formulario
-          setMonedas={setMonedas}
+        <Heading>Quote crypto now!</Heading>
+        <Form
+          setCoins={setCoins}
         />
 
-        {cargando && <Spinner />}
-        {resultado.PRICE && <Resultado resultado={resultado} />}
+        {loading && <Spinner />}
+        {result.PRICE && <Result result={result} />}
       </div>
 
-    </Contenedor>
+    </Container>
   )
 }
 

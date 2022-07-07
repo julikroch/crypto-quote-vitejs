@@ -16,29 +16,31 @@ const Select = styled.select`
     border-radius: 10px;
 `
 
-const useSelectMonedas = (label: any, opciones: any) => {
+const useSelectCoins = (label: any, options: any) => {
+
+    console.log({options})
 
     const [state, setState] = useState('')
 
-    const SelectMonedas = () => (
+    const SelectCoins = () => (
         <>
             <Label>{label}</Label>
             <Select
                 value={state}
                 onChange={(e: any) => setState(e.target.value)}
             >
-                <option value="">Seleccione</option>
-                {opciones.map((opcion: any) => (
+                <option value="">Select</option>
+                {options?.map((option: any) => (
                     <option
-                        key={opcion.id}
-                        value={opcion.id}
-                    >{opcion.nombre}</option>
+                        key={option.id}
+                        value={option.id}
+                    >{option.nombre}</option>
                 ))}
             </Select>
         </>
     )
 
-    return [state, SelectMonedas]
+    return [state, SelectCoins]
 }
 
-export default useSelectMonedas
+export default useSelectCoins
